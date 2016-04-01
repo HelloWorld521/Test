@@ -8,10 +8,11 @@
 			margin: 0;
 			padding: 0;
 		}
-		#div1{
+		div{
 			width:200px;
-			height: 300px;
+			height: 100px;
 			background-color: rgba(0,0,100,0.3);
+			margin-bottom: 20px;
 		}	
 		/*#div1:hover{
 			background-color: rgba(0,0,100,0.7);
@@ -20,23 +21,24 @@
 		</style>
 		<script type="text/javascript">
 			window.onload=function() {
-				var oDiv=document.getElementById("div1");
-				oDiv.onmouseover=function(){
-					starMove(0.7);
+				var oDiv=document.getElementsByTagName('div');
+				for(var i=0;i<oDiv.length;i++){
+				oDiv[i].onmouseover=function(){
+					starMove(this,0.7);
 				}
-				oDiv.onmouseout=function(){
-					starMove(0.3);
+				oDiv[i].onmouseout=function(){
+					starMove(this,0.3);
+				}
 				}
 			}
-			function starMove (alpha) {
-				var oDiv=document.getElementById("div1");
-				oDiv.style.backgroundColor="rgba(0,0,100,"+alpha+")";
+			function starMove (obj,alpha) {
+				obj.style.backgroundColor="rgba(0,0,100,"+alpha+")";
 			}
 		</script>
 	</head>
 	<body>
-	<div id="div1">
-	
-	</div>
+	<div></div>
+	<div></div>
+	<div></div>
 	</body>
 </html>

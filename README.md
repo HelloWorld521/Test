@@ -1,5 +1,4 @@
 # Test
 
 hi helloworld
-I like  all everythings,I like java .
-Now I studing Android.
+I like  all everythings,I like daima!

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#div1{
+			width:200px;
+			height: 300px;
+			background-color: rgba(0,0,100,0.3);
+		}	
+		/*#div1:hover{
+			background-color: rgba(0,0,100,0.7);
+		}
+		*/
+		</style>
+		<script type="text/javascript">
+			window.onload=function() {
+				var oDiv=document.getElementById("div1");
+				oDiv.onmouseover=function(){
+					starMove(0.7);
+				}
+				oDiv.onmouseout=function(){
+					starMove(0.3);
+				}
+			}
+			function starMove (alpha) {
+				var oDiv=document.getElementById("div1");
+				oDiv.style.backgroundColor="rgba(0,0,100,"+alpha+")";
+			}
+		</script>
+	</head>
+	<body>
+	<div id="div1">
+	
+	</div>
+	</body>
+</html>

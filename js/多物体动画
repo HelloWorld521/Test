@@ -8,6 +8,7 @@
 				width: 100px;
 				height: 100px;
 				background-color: red;
+				font-size: 16px;
 				margin-bottom: 20px;
 				list-style: none;
 				opacity: 0.5;
@@ -17,26 +18,38 @@
 		<script type="text/javascript">
 			window.onload=function(){
 				var aLi=document.getElementsByTagName('li');
-				for(var i=0;i<aLi.length;i++){
-					aLi[i].timer=null;
-					aLi[i].onmouseover=function() {
-						starMove(this,200);
-					}
-					aLi[i].onmouseout=function(){
-						starMove(this,100);
-					}
+				aLi[0].onmouseover=function(){
+					starMove(this,'width',200);
 				}
+				aLi[0].onmouseout=function(){
+					starMove(this,'width',100);
+				}
+				aLi[1].onmouseover=function(){
+					starMove(this,'height',200);
+				//	starMove(this,'font-size',30); //不叠加。。。
+				}
+				aLi[1].onmouseout=function(){
+					starMove(this,'height',100);
+				//	starMove(this,'font-size',14); //不能叠加？只执行后一个
+				}
+				aLi[2].onmouseover=function(){
+					starMove(this,'font-size',50);
+				}
+				aLi[2].onmouseout=function(){
+					starMove(this,'font-size',16);
+				}
+				
 			}
-			function starMove (obj,iTarget) {
+			function starMove (obj,attr,iTarget) {
 				clearInterval(obj.timer);
 				obj.timer=setInterval(function(){ 
-					var style_width=parseInt(getStyle(obj,'width'));
-					var speed=(iTarget-style_width)/8;
+					var sty=parseInt(getStyle(obj,attr));
+					var speed=(iTarget-sty)/8;
 					speed=speed>0?Math.ceil(speed):Math.floor(speed);
-					if(style_width==iTarget){
+					if(sty==iTarget){
 						clearInterval(obj.timer);
 					}else{
-						obj.style['width']=style_width+speed+'px';
+						obj.style[attr]=sty+speed+'px';
 					}
 				},30)
 			}
@@ -52,7 +65,7 @@
 	</head>
 	<body>
 	<ul>
-		<li>haha</li>
+		<li>hah</li>
 		<li>hah</li>
 		<li>hha</li>
 	</ul>

@@ -7,9 +7,11 @@
 			ul li{
 				width: 100px;
 				height: 100px;
-				background-color: yellowgreen;
+				background-color: red;
 				margin-bottom: 20px;
 				list-style: none;
+				opacity: 0.5;
+				border:3px solid blue;
 			}
 		</style>
 		<script type="text/javascript">
@@ -28,22 +30,31 @@
 			function starMove (obj,iTarget) {
 				clearInterval(obj.timer);
 				obj.timer=setInterval(function(){ 
-					var speed=(iTarget-obj.offsetWidth)/8;
+					var style_width=parseInt(getStyle(obj,'width'));
+					var speed=(iTarget-style_width)/8;
 					speed=speed>0?Math.ceil(speed):Math.floor(speed);
-					if(obj.offsetWidth==iTarget){
+					if(style_width==iTarget){
 						clearInterval(obj.timer);
 					}else{
-						obj.style.width=obj.offsetWidth+speed+'px';
+						obj.style['width']=style_width+speed+'px';
 					}
 				},30)
+			}
+			//取样式函数
+			function getStyle (obj,attr) {
+				if(obj.currentStyle){
+				return obj.currentStyle[attr];//Ie支持
+			}else{
+				return getComputedStyle(obj,false)[attr];//
+			}
 			}
 		</script>
 	</head>
 	<body>
 	<ul>
-		<li></li>
-		<li></li>
-		<li></li>
+		<li>haha</li>
+		<li>hah</li>
+		<li>hha</li>
 	</ul>
 	</body>
 </html>

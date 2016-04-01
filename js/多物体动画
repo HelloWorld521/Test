@@ -25,11 +25,11 @@
 					starMove(this,'width',100);
 				}
 				aLi[1].onmouseover=function(){
-					starMove(this,'height',200);
+					starMove(this,'opacity',0.9);
 				//	starMove(this,'font-size',30); //不叠加。。。
 				}
 				aLi[1].onmouseout=function(){
-					starMove(this,'height',100);
+					starMove(this,'opacity',0.5);
 				//	starMove(this,'font-size',14); //不能叠加？只执行后一个
 				}
 				aLi[2].onmouseover=function(){
@@ -43,13 +43,23 @@
 			function starMove (obj,attr,iTarget) {
 				clearInterval(obj.timer);
 				obj.timer=setInterval(function(){ 
-					var sty=parseInt(getStyle(obj,attr));
+					if(attr!='opacity'){
+						var sty=parseInt(getStyle(obj,attr));						
+					}else{
+						var sty=Math.round(parseFloat(iTarget)*100);
+						//console.log(sty);
+					}
 					var speed=(iTarget-sty)/8;
 					speed=speed>0?Math.ceil(speed):Math.floor(speed);
 					if(sty==iTarget){
 						clearInterval(obj.timer);
-					}else{
-						obj.style[attr]=sty+speed+'px';
+		 			}else{
+						if(attr=='opacity'){
+						//	obj.style.filter='alpha(opacity:'+(sty+speed)+')';
+							obj.style.opacity=(sty+speed)/100;
+						}else{
+							obj.style[attr]=sty+speed+'px';					
+						}
 					}
 				},30)
 			}
